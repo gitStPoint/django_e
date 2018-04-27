@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>baimw's blog</title>
-</head>
-<body>
-    <div>
-        <h1><a href=""> Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
 
-{#    <div>#}
-{#        <p>published: 14.06.2014, 12:14</p>#}
-{#        <h2><a href="">My first post</a></h2>#}
-{#        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi po#}
-{#rta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum mass#}
-{#a justo sit amet risus.</p>#}
-{#    </div>#}
-
+{% block content %}
     {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
+
